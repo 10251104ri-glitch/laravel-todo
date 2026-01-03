@@ -36,7 +36,7 @@ class TodoController extends Controller
 
         //compact関数を使うと、変数を配列にまとめて渡せる
         //ref: https://qiita.com/ryo2132/items/63ced19601b3fa30e6de
-        return view('todo.index', compact('todo'));
+        return view('todo.index', compact('todos'));
     }
 
     /**
