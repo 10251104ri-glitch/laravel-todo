@@ -9,14 +9,14 @@
                 {{-- バリデーションエラー部分テンプレート --}}
                 @include('layouts.errors')
 
-                {{form::open(['url' => route('todo.store')])}}
+                {{Form::open(['url' => route('todo.store')])}}
                     <div class="mb-3">
-                        {{ form::text('title','', ['class' => 'form-control form-control-lg', 'placeholder' => '例）再配達を頼む']) }}
+                        {{ Form::text('title','', ['class' => 'form-control form-control-lg', 'placeholder' => '例）再配達を頼む']) }}
                     </div>
                     <div class="text-center">
-                        {{ form::submit('登録する', ['class' => 'btn btn-green px-4']) }}
+                        {{ Form::submit('登録する', ['class' => 'btn btn-green px-4']) }}
                     </div>
-                {{form::close()}}
+                {{Form::close()}}
             </div>
         </div>
     </div>

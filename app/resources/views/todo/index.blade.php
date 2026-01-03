@@ -5,7 +5,7 @@
         <h2 class="my-5 text-center header-green">タスク一覧</h2>
 
         <div class="text-end">
-            <a href="{{ route('todo.index'), ['done' => true] }}" class="pe-3 text-decoration-none text-black">>
+            <a href="{{ route('todo.index', ['done' => true]) }}" class="pe-3 text-decoration-none text-black">>
                 <strong>
                     完了リスト
                 </strong>
@@ -37,25 +37,25 @@
                         </div>
                         <div class="card-footer">
                             <div class="d-flex justify-content-between">
-                                {{--　Edit Button --}}
+                                {{-- Edit Button --}}
                                 <a href="{{ route('todo.edit', $todo->id) }}" class="btn btn-orange">
                                     <i class="fa-solid fa-pen pe-2"></i>編集する
                                 </a>
-                                {{--　Done/Undone Button --}}
+                                {{-- Done/Undone Button --}}
                                 @if ($todo->is_done === false)
-                                    {{ form::open(['url' => route('todo.done', $todo->id), 'method' => 'put']) }}
-                                    {!! form::button('<i class="fa-regular fa-circle-check pe-2"></i>完了！', [
+                                    {{ Form::open(['url' => route('todo.done', $todo->id), 'method' => 'put']) }}
+                                    {!! Form::button('<i class="fa-regular fa-circle-check pe-2"></i>完了！', [
                                         'class' => 'btn btn-blue',
                                         'type' => 'submit',
                                     ]) !!}
-                                    {{ form::close() }}
+                                    {{ Form::close() }}
                                 @else
-                                    {{ form::open(['url' => route('todo.undone', $todo->id), 'method' => 'put']) }}
-                                    {!! form::button('<i class="fa-solid fa-circle-xmark pe-2"></i>未完了に戻す！', [
+                                    {{ Form::open(['url' => route('todo.undone', $todo->id), 'method' => 'put']) }}
+                                    {!! Form::button('<i class="fa-solid fa-circle-xmark pe-2"></i>未完了に戻す！', [
                                         'class' => 'btn btn-blue',
                                         'type' => 'submit',
                                     ]) !!}
-                                    {{ form::close() }}
+                                    {{ Form::close() }}
                                 @endif
                             </div>
                         </div>

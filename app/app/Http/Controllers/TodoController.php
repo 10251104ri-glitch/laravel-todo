@@ -38,6 +38,47 @@ class TodoController extends Controller
         //ref: https://qiita.com/ryo2132/items/63ced19601b3fa30e6de
         return view('todo.index', compact('todos'));
     }
+    /**
+     * Todoの新規作成
+     */
+    public function create()
+    {
+        return view('todo.create');
+    }
+    /**
+     * Todoを作成する
+     */
+    public function store(Request $request)
+    {
+        //バリデーション
+        // ref: https://readouble.com/laravel/10.x/ja/validation.html
+        $request->validate([
+            'title' => 'required|max:255',
+        ]);
+
+        //Todoを作成する
+        // DB上ではis_doneはデフォルトでgalseだが、明示的にfalseを指定
+        // user_idは、Auth::id()でログイン中のユーザーIDを取得できる
+       TodoItem::create(
+            [
+                'user_id' => Auth::id(),
+                'title' => $request->title,
+                'is_done' => false,
+            ]
+       );
+        return redirect()->route('todo.index');
+    }
+    /**
+     * Todoの表示
+     */
+    public function show($id)
+    {
+        $todo = TodoItem::find($id);
+
+        //compact関数を使うと、変数を配列にまとめて渡せる
+        //ref: https://qiita.com/ryo2132/items/63ced19601b3fa30e6de
+        return view('todo.show', compact('todo'));
+    }
 
     /**
      * Todoの編集
